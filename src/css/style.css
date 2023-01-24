@@ -7,7 +7,9 @@ body{
     background-color: #fbfbfb;
     margin: 0;
 }
-
+button{
+    cursor: pointer;
+}
 .search-form{
     padding: 15px;
     
@@ -18,19 +20,43 @@ body{
     background-color: #4961bc;
 }
 .btn-submit{
+    height: 34px;
+    border-color: transparent;
     position: absolute;
-    left: 55%;
     top: 15px;
-    height: 26px;
+    left: 56.2%;
+    border-top-right-radius: 19px;
+    border-bottom-right-radius: 3px;
 }
 .search-input{
-    width: 200px;
-    height: 20px;
+    /* width: 200px;
+    font-size: 15px;
+    height: 25px;
+    padding-top: 3px;
     position: relative;
+    padding-left: 7px;
+    border-radius: 3px;
+    border-color: transparent; */
+
+    width: 200px;
+    height: 25px;
+    border-color: #0000;
+    padding-top: 3px;
+    padding-bottom: 2px;
+    padding-left: 17px;
+    font-size: 15px;
+    position: relative;
+    border-top-right-radius: 19px;
+    border-bottom-left-radius: 19px;
+    border-top-left-radius: 3px;
+
+}
+.search-input:focus-visible{
+    outline: 1px solid transparent;
 }
 .gallery{
     flex-wrap: wrap;
-    padding: 0 10px;
+    padding: 10px 10px;
     gap: 20px;
     display: flex;
 }
@@ -49,7 +75,7 @@ body{
     padding-right: 10px;
     padding-left: 10px;
 
-text-align: center;
+    text-align: center;
     
     font-family: Roboto,sans-serif;
     display: flex;
@@ -65,32 +91,32 @@ img{
     object-fit: cover;
     /* transition: transform var(--animation-duration) var(--timing-function); */
 }
+
 .load-more{
-    /* display: block; */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    display: block;
 
     background-color: #4961bc;
     color: white;
     border-color: transparent;
-    border-radius: 2px;
+    /* border-radius: 2px; */
 
-    /* margin-right: auto;
+    margin-right: auto;
     margin-left: auto;
-    margin-top: 20px;
+    margin-top: 2px;
+    margin-bottom: 8px;
     width: 150px;
-    height: 39px; */
+    height: 39px; 
 
+    border-top-right-radius: 19px;
+    border-bottom-left-radius: 19px;
+
+    transition: background-color 200ms linear;
+
+}
+.load-more:hover{
+    background-color: #5a77e2;
+
+}
+.is-hidden{
+    display: none;
 }

@@ -4,7 +4,7 @@ import SimpleLightbox from "simplelightbox";
 
 import { getImages } from "./fetchImages";
 import { refs } from "./refs";
-console.log(refs.loadMore)
+
 //LightBox
 const lightbox = new SimpleLightbox(".gallery a", {
   // showCounter: false,
@@ -14,13 +14,11 @@ refs.form.addEventListener('submit',formSubmitHandler)
 refs.loadMore.addEventListener('click',loadMoreClickHandler)
 
 let page = 1
-console.log('Початкова сторінка: ',page)
-refs.loadMore.setAttribute('hidden', true)
+refs.loadMore.classList.add('is-hidden')
+// refs.loadMore.setAttribute('hidden', true) ❌
 
-function loadMoreClickHandler(event){
+function loadMoreClickHandler(){
   page+=1
-  console.log('page after click: ',page)
-
   refs.loadMore.textContent = 'Loading...'
 
   const userRequest = refs.input.value.trim()
@@ -29,7 +27,6 @@ function loadMoreClickHandler(event){
   .then(data => {
     const imgArr = data.hits
     refs.loadMore.textContent = 'Load more'
-    console.log('imgarr: ',imgArr)
 
     renderMarkup(imgArr)
     smoothScroll()
@@ -41,17 +38,16 @@ function loadMoreClickHandler(event){
 function formSubmitHandler(event){
  event.preventDefault()
  refs.gallery.innerHTML = ''
- refs.loadMore.setAttribute('hidden', true)
+ refs.loadMore.classList.add('is-hidden')
+//  refs.loadMore.setAttribute('hidden', true)❌
  page = 1
 
  const userRequest = refs.input.value.trim()
-//  const fixed
  if(userRequest === ''){
   Notiflix.Notify.failure("Please fill in the search field")
 return
  }
  refs.button.textContent = 'Loading...'
-
 
  getImages(userRequest,page)
     .then(data => {
@@ -60,8 +56,10 @@ return
    const imgArr = data.hits
 
    if(imgArr.length === 0){
-    refs.loadMore.setAttribute('hidden', true)
-    Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
+    // refs.loadMore.setAttribute('hidden', true)
+   refs.loadMore.classList.add('is-hidden')
+
+   Notiflix.Notify.failure("Sorry, there are no images matching your search query. Please try again.")
 return
   }
 renderMarkup(imgArr)
@@ -74,7 +72,6 @@ lightbox.refresh()
 
 }
 function renderMarkup(array){
-  console.log('ПРАЦЮЄ render!!!')
   array.map(({largeImageURL,webformatURL,tags,likes,views,comments,downloads}) => {
     createMarkup(largeImageURL,webformatURL,tags,likes,views,comments,downloads)
  })
@@ -106,7 +103,8 @@ function createMarkup(largeImageURL,webformatURL,tags,likes,views,comments,downl
 }
 function endOfImages(array){
     if(array.length < 40 && array.length !== 0){
-        refs.loadMore.setAttribute('hidden', true)
+        // refs.loadMore.setAttribute('hidden', true)
+        refs.loadMore.classList.add('is-hidden')
         Notiflix.Notify.info("You've reached the end of search results");
     }  
 }
