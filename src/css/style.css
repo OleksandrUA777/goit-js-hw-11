@@ -106,14 +106,17 @@ img{
     margin-bottom: 8px;
     width: 150px;
     height: 39px; 
+    font-size: 16px;
+
 
     border-top-right-radius: 19px;
     border-bottom-left-radius: 19px;
 
     transition: background-color 200ms linear;
-
+ 
 }
 .load-more:hover{
+
     background-color: #5a77e2;
 
 }
